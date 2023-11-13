@@ -57,39 +57,39 @@ namespace pryArmanini_TP3
             tvCarpeta.Nodes.Add(rootNode);
 
             // Llamamos a un método recursivo para agregar carpetas y archivos
-            AgregarDatos(rootNode, rutaCompleta);
+            //AgregarDatos(rootNode, rutaCompleta);
         }
     }
 
-    private void AgregarDatos(TreeNode parentNode, string ruta)
-    {
-        try
-        {
-            // Obtiene las carpetas y los archivos en la ruta
-            string[] carpetas = Directory.GetDirectories(ruta);
-            string[] archivos = Directory.GetFiles(ruta);
+    //private void AgregarDatos(TreeNode parentNode, string ruta)
+    //{
+    //    try
+    //    {
+    //        // Obtiene las carpetas y los archivos en la ruta
+    //        string[] carpetas = Directory.GetDirectories(ruta);
+    //        string[] archivos = Directory.GetFiles(ruta);
 
-            // Agrega las carpetas al nodo
-            foreach (string nombrecarpeta in carpetas)
-            {
-                TreeNode carpetaNode = new TreeNode(Path.GetFileName(nombrecarpeta));
-                parentNode.Nodes.Add(carpetaNode);
+    //        // Agrega las carpetas al nodo
+    //        foreach (string nombrecarpeta in carpetas)
+    //        {
+    //            TreeNode carpetaNode = new TreeNode(Path.GetFileName(nombrecarpeta));
+    //            parentNode.Nodes.Add(carpetaNode);
 
-                // Agrega carpetas y archivos dentro de esta carpeta
-                AgregarDatos(carpetaNode, nombrecarpeta);
-            }
+    //            // Agrega carpetas y archivos dentro de esta carpeta
+    //            AgregarDatos(carpetaNode, nombrecarpeta);
+    //        }
 
-            // Agregar archivos al nodo actual
-            foreach (string nombreArchivo in archivos)
-            {
-                TreeNode archivoNode = new TreeNode(Path.GetFileName(nombreArchivo));
-                archivoNode.Tag = nombreArchivo; // Almacena la ruta completa del archivo como un valor asociado
-                parentNode.Nodes.Add(archivoNode);
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Error: " + ex.Message);
-        }
-    }
+    //        // Agregar archivos al nodo actual
+    //        foreach (string nombreArchivo in archivos)
+    //        {
+    //            TreeNode archivoNode = new TreeNode(Path.GetFileName(nombreArchivo));
+    //            archivoNode.Tag = nombreArchivo; // Almacena la ruta completa del archivo como un valor asociado
+    //            parentNode.Nodes.Add(archivoNode);
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        MessageBox.Show("Error: " + ex.Message);
+    //    }
+    //}
 }
