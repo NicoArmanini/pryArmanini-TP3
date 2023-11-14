@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.OleDb;
 
 namespace pryArmanini_TP3
 {
     public partial class frmVistaEmpleados : Form
     {
+       
         public frmVistaEmpleados()
         {
             InitializeComponent();
@@ -20,44 +22,24 @@ namespace pryArmanini_TP3
 
         private void tvCarpeta_AfterSelect(object sender, TreeViewEventArgs e)
         {
-
-            TreeNode selectedNode = e.Node;
-
-            // verifica que el nodo seleccionado sea un archivo y no una carpeta
-            if (selectedNode.Tag != null)
-            {
-                string archivoSeleccionado = selectedNode.Tag.ToString(); // Obtiene la ruta completa del archivo
-
-                try
-                {
-                    // Lee el contenido del archivo
-                    string contenido = File.ReadAllText(archivoSeleccionado);
-
-                    rtbArchivos.Visible = true;
-                    // Muestra el contenido en el RichTextBox
-                    rtbArchivos.Text = contenido;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al abrir el archivo: " + ex.Message);
-                }
-            }
-            else
-            {
-                rtbArchivos.Text = "";
-            }
+            string detalles = e.Node.Tag.ToString();
+            rtbArchivos.Text = detalles;
         }
 
         private void frmVistaEmpleados_Load(object sender, EventArgs e)
         {
-            string rutaCompleta = @"../../base/EMPLEO.accdb";
 
-            // Agregar la carpeta principal al árbol
-            TreeNode rootNode = new TreeNode("Carpetas y Archivos del Proyecto");
-            tvCarpeta.Nodes.Add(rootNode);
+            clsConexion conexion = new clsConexion();
+            conexion.CargarDatos(tvCarpeta);
 
-            // Llamamos a un método recursivo para agregar carpetas y archivos
-            //AgregarDatos(rootNode, rutaCompleta);
+            //string rutaCompleta = @"../../base/EMPLEO.accdb";
+
+            //// Agregar la carpeta principal al árbol
+            //TreeNode rootNode = new TreeNode("Carpetas y Archivos del Proyecto");
+            //tvCarpeta.Nodes.Add(rootNode);
+
+            //// Llamamos a un método recursivo para agregar carpetas y archivos
+            ////AgregarDatos(rootNode, rutaCompleta);
         }
     }
 

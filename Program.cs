@@ -16,7 +16,7 @@ namespace pryArmanini_TP3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
+            Application.Run(new frmVistaEmpleados());
         }
     }
 }

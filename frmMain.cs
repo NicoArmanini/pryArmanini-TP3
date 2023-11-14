@@ -16,12 +16,7 @@ namespace pryArmanini_TP3
         {
             InitializeComponent();
         }
-
-        frmLogin v = new frmLogin();
-
-        int contador = 0;
      
-
         private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -29,12 +24,15 @@ namespace pryArmanini_TP3
 
         private void Hora_Tick(object sender, EventArgs e)
         {
-            contador += 1;
-            if (contador > 1)
-            {
-                toolHora.Text = Convert.ToString(DateTime.Now);
-            }
-            toolUser.Text = clsConexion.Usuario;
+            toolHora.Text = DateTime.Now.ToLongTimeString();
+            toolFecha.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void registroEmpleadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVistaEmpleados frm = new frmVistaEmpleados();
+            frm.ShowDialog();
+            this.Hide();
         }
     }
 }
